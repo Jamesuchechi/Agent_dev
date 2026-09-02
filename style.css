@@ -1,0 +1,44 @@
+
+
+body {
+    background-color: royalblue;
+    color: white;
+}
+
+h1,h2,h3 {
+    background-color: brown;
+    color: rgb(65, 225, 86);
+}
+
+.card {
+    background: purple;
+}
+
+.fortune {
+    background: orange;
+}
+
+#greatness {
+    background: yellow;
+    color: black;
+    margin: 40px;
+    padding: 50px;
+    border: 15px solid black;
+    border-radius: 30px;
+
+}
+
+#ibrahim {
+    padding: 50px;
+    margin: 30px;
+    text-align: center;
+    background: whitesmoke;
+    border-radius: 40px;
+
+
+}
+
+ul:hover {
+    background-color: goldenrod;
+    color: black;
+}
