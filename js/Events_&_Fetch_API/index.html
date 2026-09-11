@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Button</h1>
+    <button id="btn">Change Text</button>
+    <p class="text">Original Text</p>
+    <input type="text" placeholder="Type something..." id="username"><br><br>
+    <input id="search" placeholder="Search..."><br><br><br>
+
+    <form id="loginForm">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"><br><br>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"><br><br>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>     
+    <script>
+        const btn = document.getElementById('btn');
+        const text = document.getElementsByClassName('text')[0];
+        const usernameInput = document.getElementById('username');
+        const search = document.getElementById('search');
+        const loginForm = document.getElementById('loginForm');
+
+        btn.addEventListener('click', () => {
+            text.textContent = 'You decided to change me so I am changed!';
+        });
+
+        usernameInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                text.textContent = `Hello, ${usernameInput.value}!`;
+            }
+        });
+
+        search.addEventListener("input", function (event) {
+            console.log(event.target.value);
+        });
+
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            console.log({ email, password });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub Profile</title>
+  <style>
+    body { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      margin-top: 50px; 
+      margin-bottom: 50px;
+      gap: 20px;
+      background-color: #cdaf1dee;
+      color: white;
+    }
+    input { 
+      padding: 10px; 
+      margin-right: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 5px; 
+    }
+    button { 
+      padding: 10px 20px; 
+      border: none; 
+      background-color: black; 
+      color: white; 
+      border-radius: 5px; 
+      cursor: pointer; 
+    }
+    button:hover { 
+      background-color: goldenrod;
+      color: white; 
+    }
+    #profile { 
+      border: 1px solid #ddd; 
+      padding: 20px; 
+      width: 300px; 
+      border-radius: 10px; 
+      font-family: Arial;
+      background-color: black;
+    }
+    #profile img { width: 100px; border-radius: 50%; }
+  </style>
+</head>
+<body>
+
+<input type="text" id="username" placeholder="Enter github username" value="jamesuchechi">
+<button onclick="getUser()">Search</button>
+
+<div id="profile"></div>
+
+<script>
+async function getUser() {
+  const username = document.getElementById('username').value;
+  const profileDiv = document.getElementById('profile');
+  
+  profileDiv.innerHTML = "Loading...";
+  
+  try {
+    
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    
+    if (!response.ok) {
+      throw new Error("User not found");
+    }
+    
+    const data = await response.json();
+    
+    
+    profileDiv.innerHTML = `
+      <img src="${data.avatar_url}" alt="${data.login}">
+      <h2>${data.name || data.login}</h2>
+      <p><b>Username:</b> @${data.login}</p>
+      <p><b>Bio:</b> ${data.bio || "No bio"}</p>
+      <p><b>Location:</b> ${data.location || "Unknown"}</p>
+      <p><b>Followers:</b> ${data.followers} | <b>Following:</b> ${data.following}</p>
+      <p><b>Public Repos:</b> ${data.public_repos}</p>
+      <a href="${data.html_url}" target="_blank">View GitHub Profile</a>
+    `;
+
+    profileDiv.style.textDecoration = "none";
+    
+  } catch (error) {
+    profileDiv.innerHTML = `<p style="color:red">${error.message}</p>`;
+  }
+}
+
+
+getUser();
+</script>
+
+</body>
+</html>
